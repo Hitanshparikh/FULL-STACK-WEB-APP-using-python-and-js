@@ -1,5 +1,10 @@
-from app import app,db
+from app import app, db
 from models import Friend
+
+# Constants
+REQUIRED_FIELDS = ["name", "role", "description", "email", "age", "mobile", "gender", "imgUrl"]
+
+from flask import request, jsonify
 from flask import request,jsonify
 
 @app.route("/api/friends",methods=["GET"])
@@ -14,8 +19,7 @@ def create_friend():
         data = request.json
         
         #Validation
-        required_fields = ["name", "role", "description", "email", "age", "mobile", "gender", "imgUrl"]
-        for field in required_fields:
+        for field in REQUIRED_FIELDS:
             if field not in data or not data.get(field):
                 return jsonify({"error": f"Missing required field: {field}"}), 400
 

@@ -12,7 +12,7 @@ function App() {
 
 			<Container maxW={"1200px"} my={4}>
 				<Text
-					fontSize={{ base: "3xl", md: "50" }}
+					fontSize={{ base: "3xl", md: "5xl" }}
 					fontWeight={"bold"}
 					letterSpacing={"2px"}
 					textTransform={"uppercase"}
@@ -32,3 +32,4 @@ function App() {
 }
 
 export default App;
+export const BASE_URL=""
