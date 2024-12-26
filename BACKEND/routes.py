@@ -5,7 +5,6 @@ from models import Friend
 REQUIRED_FIELDS = ["name", "role", "description", "email", "age", "mobile", "gender", "imgUrl"]
 
 from flask import request, jsonify
-from flask import request,jsonify
 
 @app.route("/api/friends",methods=["GET"])
 def get_friends():
@@ -17,6 +16,8 @@ def get_friends():
 def create_friend():
     try:
         data = request.json
+        if data is None:
+            return jsonify({"error": "Invalid JSON input"}), 400
         
         #Validation
         for field in REQUIRED_FIELDS:
@@ -30,16 +31,17 @@ def create_friend():
         age = data.get("age")
         mobile = data.get("mobile")
         gender = data.get("gender")
-        imgUrl = data.get("imgUrl")
+        img_url = data.get("imgUrl")
         
-        # Fetch avatar image based on gender
-        if gender == "male":
-            img_url = f"https://avatar.iran.liara.run/public/boy?username={name}"
-        elif gender == "female":
-            img_url = f"https://avatar.iran.liara.run/public/girl?username={name}"
-        else:
-            img_url = None
- 
+        
+        # Fetch avatar image based on gender if img_url is not provided
+        if not img_url:
+            if gender == "male":
+                img_url = f"https://avatar.iran.liara.run/public/boy?username={name}"
+            elif gender == "female":
+                img_url = f"https://avatar.iran.liara.run/public/girl?username={name}"
+            else:
+                img_url = None
         new_friend = Friend(name=name,role=role,description=description,email=email,age=age,mobile=mobile ,gender=gender,img_url=img_url)
  
         db.session.add(new_friend)
@@ -49,11 +51,11 @@ def create_friend():
  
     except Exception as e:
         db.session.rollback()
-    return jsonify({"error": str(e)}), 500
+        return jsonify({"error": str(e)}), 500
 
 #delete a friend
 @app.route("/api/friends/<int:friend_id>",methods=["DELETE"])
-def delete_friend(friend_id):
+ delete_friend(friend_id):
     try:
         friend = Friend.query.get(friend_id)
         if friend is None:
