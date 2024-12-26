@@ -19,9 +19,9 @@ class Friend(db.Model):
       "role":self.role,
       "description":self.description,
       "gender":self.gender,
-      "img_url":self.img_url,
-      "email":self.email,
-      "age":self.age,
-        "mobile":self.mobile
-      }
+      "imgUrl":self.img_url,
+    "email":self.email,
+    "age":self.age,
+      "mobile":self.mobile
+        }
     
