@@ -16,6 +16,7 @@ import {
     Textarea,
     useDisclosure,
 } from "@chakra-ui/react";
+import { useToast } from "@chakra-ui/toast"; // Updated import
 import { useToast } from "@chakra-ui/react"; // Updated import
 import { useState } from "react";
 import PropTypes from "prop-types";
@@ -149,3 +150,4 @@ CreateUserModal.propTypes = {
 };
 
 export default CreateUserModal;
+
