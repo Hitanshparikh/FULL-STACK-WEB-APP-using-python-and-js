@@ -55,7 +55,7 @@ def create_friend():
 
 #delete a friend
 @app.route("/api/friends/<int:friend_id>",methods=["DELETE"])
- delete_friend(friend_id):
+def delete_friend(friend_id):
     try:
         friend = Friend.query.get(friend_id)
         if friend is None:

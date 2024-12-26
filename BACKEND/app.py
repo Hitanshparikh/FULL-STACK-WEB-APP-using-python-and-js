@@ -5,6 +5,7 @@ import os
 import sys
 
 app = Flask(__name__)
+CORS(app)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL', 'sqlite:///friends.db')
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
@@ -23,8 +24,7 @@ def index(filename):
   return send_from_directory(dist_folder,filename)
 
 sys.path.append(os.path.join(os.getcwd(), "routes"))
-import routes
-import routes
+import routes  # Ensure that routes are properly registered within the app
 
 with app.app_context():
   db.create_all()
