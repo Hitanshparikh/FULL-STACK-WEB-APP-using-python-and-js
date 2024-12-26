@@ -15,8 +15,8 @@ import {
     RadioGroup,
     Textarea,
     useDisclosure,
-    useToast,
 } from "@chakra-ui/react";
+import { useToast } from "@chakra-ui/react"; // Updated import
 import { useState } from "react";
 import PropTypes from "prop-types";
 import { BiAddToQueue } from "react-icons/bi";

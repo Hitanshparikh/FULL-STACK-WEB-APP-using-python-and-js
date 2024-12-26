@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import UserCard from "./UserCard";
 import { useEffect, useState } from "react";
-import { BASE_URL } from "../App";
+import * as App from "../App";
 
 const UserGrid = ({ users, setUsers }) => {
 	const [isLoading, setIsLoading] = useState(true);
@@ -11,7 +11,7 @@ const UserGrid = ({ users, setUsers }) => {
 	useEffect(() => {
 		const getUsers = async () => {
 			try {
-				const res = await fetch(BASE_URL + "/friends");
+				const res = await fetch(App.BASE_URL + "/friends");
 				const data = await res.json();
 
 				if (!res.ok) {
